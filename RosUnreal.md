@@ -1,18 +1,14 @@
 # Ros Integration Plugin Documentation
 
 ## ToDo:
-1. Adjust callback so it prints out whatever data type the arm passes in
-    - Also need to adjust so you can subscribe to multiple topics (one for each joint im assuming)
-    - Would just need to add multiple subscribe calls I believe
-    - Unless they're publishing to one topic and nesting them inside a dictionary
-    - issue may be that its registering in websocket connection but not in websocket override
-    - Adjust MoveItMessageConverter functions to handle the custom data type
-2. Fix the random unsubscription problem
+1. Get rid of unnecessary variables in RosInstance.cpp (check to make sure they're not being used in game but i don't think they are)
+2. Doc strings
 3. Modularize so that you can pass host, port, topic type, topic name into a blueprint via string (make this all blueprint callable)
-4.  Test out publishing to topic
 5. make generate random key actually generate a random key (just hard coded right now)
 6. Add a catch so your entire game doesnt crash when the rosbridge server isn't running
-7. Document/adjust to accomodate dev standards
+8. Add legal notices
+9. Make UROSShared state setter methods instead of just directly accessing the variables
+10. Switch back the values so it's not * 45
 
 ## HOW TO RUN:
 
@@ -114,3 +110,19 @@ Each new data type required its own converter class so that Unreal could know ho
 
 
 
+
+
+
+VC Notes: When you pull in GitHub, it pulls each version from the commit history, not just the one you want, which is what Perforce gives you, so your local version is much more lightweight. Because the files are binary it cant do diffs, so you get a copy, which means you're pulling the entire file multiple times
+
+On Perforce it only gives you the most recent version, or the version you want when you pull so it is much better with binaries. 
+
+Also perforce makes you be connected to server and checkout when you edit files, so it prevents binary merge conflicts which are very difficult to sort out. 
+
+
+
+angle0: 
+1: need to account for 
+2: good
+3: reverse
+4: wrong axis

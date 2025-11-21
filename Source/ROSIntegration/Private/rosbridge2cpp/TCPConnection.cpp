@@ -1,3 +1,25 @@
+
+// MIT License
+
+// Copyright (c) 2025 YKK.xTechLab.Engineering
+
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
 #include "TCPConnection.h"
 
 #include "ROSIntegrationCore.h"
@@ -63,9 +85,7 @@ bool TCPConnection::SendMessage(std::string data)
 	// std::string msg = "{\"args\":{\"a\":1,\"b\":2},\"id\":\"call_service:/add_two_ints:23\",\"op\":\"call_service\",\"service\":\"/add_two_ints\"}";
 	const uint8 *byte_msg = reinterpret_cast<const uint8*>(data.c_str());
 	int32 bytes_sent = 0;
-	// TODO check proper casting
 
-	// TODO check errors on send
 	_sock->Send(byte_msg, data.length(), bytes_sent);
 	UE_LOG(LogROS, VeryVerbose, TEXT("Send data: %s"), *FString(UTF8_TO_TCHAR(data.c_str())));
 

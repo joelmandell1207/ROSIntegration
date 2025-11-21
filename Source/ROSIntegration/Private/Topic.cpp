@@ -40,7 +40,8 @@ public:
 	~Impl() {
 
 		if (_Callback && _Ric) {
-			Unsubscribe();
+			UE_LOG(LogROS, Display, TEXT("Unsubscribing frmo impl destructor"));
+			// Unsubscribe();
 		}
 
 		if(_ROSTopic) delete _ROSTopic;
@@ -75,6 +76,7 @@ public:
 		}
 		if (_Callback) {
 			UE_LOG(LogROS, Warning, TEXT("Rostopic was already subscribed"));
+			UE_LOG(LogROS, Warning, TEXT("Double subscription, unsubscribing"));
 			Unsubscribe();
 		}
 		UE_LOG(LogROS, Display, TEXT("Attempting to connect to topic"));
@@ -95,12 +97,12 @@ public:
 
 	bool Unsubscribe()
 	{
-		UE_LOG(LogROS, Display, TEXT("Unsubscribe being called"));
+		UE_LOG(LogROS, Display, TEXT("Unsubscribe being called bool"));
 		if (!_ROSTopic) {
 			// UE_LOG(LogROS, Error, TEXT("Rostopic hasn't been initialized before Unsubscribe() call")); // Removing, as this warning as annoying
 			return false;
 		}
-
+		
 		bool result = _ROSTopic->Unsubscribe(_CallbackHandle);
 		if (result) {
 			_Callback = nullptr;
@@ -256,6 +258,7 @@ bool UTopic::Subscribe(std::function<void(TSharedPtr<FROSBaseMsg>)> func)
 
 bool UTopic::Unsubscribe()
 {
+	UE_LOG(LogROS, Display, TEXT("Unsubscribing frmo UTopic unsubscribe"));
 	_State.Subscribed = false;
 	return _State.Connected && _Implementation && _Implementation->Unsubscribe();
 }

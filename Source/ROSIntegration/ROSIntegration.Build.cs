@@ -46,7 +46,10 @@ public class ROSIntegration : ModuleRules
 			{
 				"Core",
 				"Sockets",
-				"Networking"
+				"Networking",
+				"Json",
+				"JsonUtilities",
+				"Projects"
 				// ... add other public dependencies that you statically link with here ...
 			}
 		);
@@ -55,11 +58,14 @@ public class ROSIntegration : ModuleRules
 		PrivateDependencyModuleNames.AddRange(
 			new string[]
 			{
+				"Core",
 				"CoreUObject",
 				"Engine",
 				"Sockets",
 				"Networking",
-				"WebSockets"
+				"WebSockets",
+				"InputCore",
+				"AnimGraphRuntime"
 				// ... add private dependencies that you statically link with here ...
 			}
 		);

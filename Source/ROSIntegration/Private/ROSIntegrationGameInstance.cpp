@@ -210,6 +210,7 @@ void UROSIntegrationGameInstance::ShutdownAllROSObjects()
 	for (TObjectIterator<UTopic> It; It; ++It)
 	{
 		UTopic* Topic = *It;
+		UE_LOG(LogROS, Warning, TEXT("Shutting down ROSObjects, unsubscription about to happen"));
 		Topic->Unadvertise(); // Must come before unsubscribe becasue unsubscribe can potentially set _ROSTopic to null
 		Topic->Unsubscribe();
 		Topic->MarkAsDisconnected();
